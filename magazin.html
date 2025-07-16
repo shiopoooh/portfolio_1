@@ -14,6 +14,10 @@
 </head>
 <body>
 
+  <video id="bg-video" autoplay loop muted playsinline>
+  <source src="img/Clouds-and-checks_green.mp4" type="video/mp4">
+</video>
+
 <div class="header-bar">
     <div class="hamburger">
     <span></span>
@@ -220,6 +224,62 @@
   });
 </script>
 
+<script>
+  function applyResponsiveGrid() {
+    if (window.innerWidth <= 768) {
+      $(window).ready(function() {
+		$('#magazine').turn({
+							display: 'single',
+							acceleration: true,
+							gradients: !$.isTouch,
+							elevation:50,
+							when: {
+								turned: function(e, page) {
+									/*console.log('Current view: ', $(this).turn('view'));*/
+								}
+							}
+						});
+	});
+	
+	
+	$(window).bind('keydown', function(e){
+		
+		if (e.keyCode==37)
+			$('#magazine').turn('previous');
+		else if (e.keyCode==39)
+			$('#magazine').turn('next');
+			
+	});
+    } else {
+      $(window).ready(function() {
+		$('#magazine').turn({
+							display: 'double',
+							acceleration: true,
+							gradients: !$.isTouch,
+							elevation:50,
+							when: {
+								turned: function(e, page) {
+									/*console.log('Current view: ', $(this).turn('view'));*/
+								}
+							}
+						});
+	});
+	
+	
+	$(window).bind('keydown', function(e){
+		
+		if (e.keyCode==37)
+			$('#magazine').turn('previous');
+		else if (e.keyCode==39)
+			$('#magazine').turn('next');
+			
+	});
+    }
+  }
+
+  // 初回実行 & リサイズ時に対応
+  $(window).on('load resize', applyResponsiveGrid);
+</script>
 
 
 </body>
